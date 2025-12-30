@@ -1,0 +1,63 @@
+import pandas as pd
+import os
+import numpy as np
+from datetime import datetime
+
+# 1. Load data yang sudah dibersihkan pada Tahap 1
+project_dir = "01_HR_Analysis"
+path_processed = os.path.join(project_dir, "data", "processed", "HRDataset_Cleaned.csv")
+df = pd.read_csv(path_processed)
+
+# Pastikan kolom tanggal terbaca sebagai datetime
+df['DOB'] = pd.to_datetime(df['DOB'])
+df['DateofHire'] = pd.to_datetime(df['DateofHire'])
+
+# 2. Membuat kolom Tenure (Masa Kerja) dalam hitungan tahun
+# Jika 'Active', gunakan tanggal hari ini. Jika tidak, gunakan tanggal terminasi.
+today = datetime.now()
+
+def calculate_tenure(row):
+    if row['DateofTermination'] == 'Active':
+        end_date = today
+    else:
+        # Konversi string tanggal terminasi ke datetime
+        end_date = pd.to_datetime(row['DateofTermination'])
+    
+    diff = end_date - row['DateofHire']
+    return round(diff.days / 365.25, 2)
+
+df['Tenure'] = df.apply(calculate_tenure, axis=1)
+
+# 3. Membuat kolom Age (Umur Karyawan)
+df['Age'] = df['DOB'].apply(lambda x: today.year - x.year - ((today.month, today.day) < (x.month, x.day)))
+
+# 4. Membuat PerformanceScore_Map (Skala Angka 1-4)
+# Mapping: Exceeds (4), Fully Meets (3), Needs Improvement (2), PIP (1)
+perf_mapping = {
+    'Exceeds': 4,
+    'Fully Meets': 3,
+    'Needs Improvement': 2,
+    'PIP': 1
+}
+df['PerformanceScore_Map'] = df['PerformanceScore'].map(perf_mapping)
+
+# 5. Membuat Salary_Group (Low, Medium, High) berdasarkan persentil
+# Low: < 25th percentile, Medium: 25-75th, High: > 75th
+quartiles = df['Salary'].quantile([0.25, 0.75])
+def salary_categorize(s):
+    if s < quartiles[0.25]:
+        return 'Low'
+    elif s <= quartiles[0.75]:
+        return 'Medium'
+    else:
+        return 'High'
+
+df['Salary_Group'] = df['Salary'].apply(salary_categorize)
+
+# 6. Simpan kembali sebagai data final untuk EDA
+path_final = os.path.join(project_dir, "data", "processed", "HRDataset_Final.csv")
+df.to_csv(path_final, index=False)
+
+print("--- Feature Engineering Selesai ---")
+print(f"Kolom baru berhasil ditambahkan: Tenure, Age, PerformanceScore_Map, Salary_Group")
+print(df[['Employee_Name', 'Tenure', 'Age', 'PerformanceScore_Map', 'Salary_Group']].head())
