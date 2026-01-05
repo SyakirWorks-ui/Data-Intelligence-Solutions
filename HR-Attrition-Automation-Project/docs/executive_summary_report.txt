@@ -1,0 +1,25 @@
+
+==================================================
+HR ANALYTICS EXECUTIVE SUMMARY REPORT
+Generated on: 2026-01-02 10:32:52
+==================================================
+
+1. HEADCOUNT OVERVIEW
+- Total Workforce: 1470 employees
+- Current Attrition Rate: 16.12%
+
+2. FINANCIAL IMPACT
+- Average Monthly Income: $6502.93
+- Average Tenure at Company: 7.0 years
+
+3. EMPLOYEE SENTIMENT
+- Average Job Satisfaction Score: 2.73 / 4.0
+
+4. CRITICAL INSIGHTS
+- Highest Attrition Group (Age): 18-25
+- Overtime Impact: Employees working Overtime have an attrition rate of 30.5% 
+  vs 10.4% for non-overtime.
+
+--------------------------------------------------
+Status: Data is validated and ready for Power BI.
+==================================================
