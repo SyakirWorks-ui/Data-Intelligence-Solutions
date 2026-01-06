@@ -36,6 +36,8 @@ To enable the dynamic interactivity of this dashboard, I developed a centralized
 Fundamental calculations to establish the organization's current scale.
 **Total Employees** = COUNT('HR_Final_Gold_Standard'[EmployeeID])
 
+**Total Employees** = COUNT('HR_Final_Gold_Standard'[EmployeeID])
+
 **Active Employees** = CALCULATE([Total Employees], 'HR_Final_Gold_Standard'[Attrition] = "No")
 
 **Attrition Count** = CALCULATE([Total Employees], 'HR_Final_Gold_Standard'[Attrition] = "Yes")
@@ -109,3 +111,4 @@ I am always open to discussing data-driven strategies and technical implementati
 **Email**: [syakirworksid@gmail.com]
 
 **Website**: [https://syakirworks-portfolio.base44.app/]
+
