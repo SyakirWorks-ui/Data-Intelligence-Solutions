@@ -1,0 +1,1 @@
+# Fungsi pembantu (helper functions)
