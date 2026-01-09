@@ -13,7 +13,8 @@ This project is an **End-to-End Fintech Solution** designed to automate credit r
 * **Production Automation Engine**: A standalone Python script (`engine.py`) designed for high-volume batch processing in real-world environments.
 * **Automated Reporting**: Systematically generates decision reports (`automated_decisions`) and critical alerts for high-risk profiles.
 
-## 📂 Project Structure
+  ## 📁 Project Structure
+
 ```text
 ├── data/
 │   ├── raw/                # Original un-processed datasets
@@ -24,8 +25,7 @@ This project is an **End-to-End Fintech Solution** designed to automate credit r
 │   └── automation_outputs/ # FINAL OUTPUT: Automated Decision Reports
 └── src/
     └── automation/         # Core Automation Logic (engine.py)
-
-
+```
 
 
 ## 🛠️ **Technology Stack**
@@ -76,3 +76,4 @@ I am a data professional dedicated to building automated solutions that transfor
 ---
 
 *“Transforming raw financial data into automated strategic intelligence.”*
+
