@@ -56,6 +56,7 @@ High Risk Customers = CALCULATE([Total Customers], 'final_predictions'[Churn_Pro
 │   └── figures/        # Dashboard screenshots for documentation
 ├── src/                # Python scripts for automation and cleaning
 └── README.md           # Project lan
+```
 
 ## 🖥️ Dashboard Previews
 1. Executive Customer Retention Overview
